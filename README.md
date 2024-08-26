@@ -1,4 +1,4 @@
-# Ejemplos de Código de Concurerncia en Java
+# Ejemplos de Código de Concurrencia en Java
 
 -> Link a mis notas en el blog:
 
