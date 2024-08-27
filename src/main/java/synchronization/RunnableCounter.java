@@ -15,7 +15,7 @@ public class RunnableCounter implements Runnable {
         }
     }
 
-    public void nameOfThread(String name){
+    public void setNameOfThread(String name){
         this.nameOfThread = name;
     }
 }
