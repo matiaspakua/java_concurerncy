@@ -1,5 +1,8 @@
 package synchronization;
 
+/**
+ * Hilo que ejecuta un contador.
+ */
 public class RunnableCounter implements Runnable {
 
     int localThreadVariable;

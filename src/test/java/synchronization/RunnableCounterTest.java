@@ -6,6 +6,11 @@ class RunnableCounterTest {
 
     @Test
     public void simpleRunnableCounterTest() {
+        /*
+         * En este escenario, cada instancia de la clase runnable está
+         * asociada a un "hilo" (thread) distinto, por lo tanto, las variables
+         * que se instancian son privadas a cada hilo.
+         */
         RunnableCounter runnableCounter1 = new RunnableCounter();
         Thread thread1 = new Thread(runnableCounter1, "Thread1");
         runnableCounter1.nameOfThread("thread_1");
