@@ -2,6 +2,7 @@ package synchronization;
 
 public class RunnableCounterDataRace implements Runnable{
 
+    // Recurso compartido por los thread.
     private int counter;
 
     @Override
