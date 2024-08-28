@@ -1,28 +1,29 @@
 package synchronization;
 
-public class SynchronizationAndVolatile {
+public class SynchronizationAndVolatile implements Runnable {
 
-    private String accountToValidate = "test";
+    private int counter;
 
-    public synchronized boolean methodSynchronization(float amount){
-        // La sección critica va aqui:
-
-        // if ( accountOrigin.hasMoney(amount)){
-        //      accountOrigin.withdraw(amount);
-        //      accountDestiny.deposit(amount);
-        //      return true;
-        // } else {
-        //      return false;
-        // }
-        return true;
+    public int getCounter() {
+        return counter;
     }
 
-    public void objectSynchronization(){
+    @Override
+    public void run() {
+        long startTime = System.nanoTime();
+        for (int i = 0; i < 1_000_000; i++) {
 
-        synchronized(accountToValidate){
-            // La sección critica va aqui:
-            // ejecutar alguna validación en la cuenta
-            accountToValidate = "valid";
+            /*
+            En este caso el monitor es el objecto actual (THIS).
+             */
+            synchronized (this) {
+                // código critico, sincronizado, solo un thread puede acceder a la vez.
+                counter++;
+            }
         }
+        long elapsedTime = System.nanoTime() - startTime;
+
+        System.out.println(Thread.currentThread().getName() + " increased the counter up to: " +
+                counter + " in " + elapsedTime / 1000000 + " milliseconds");
     }
 }
