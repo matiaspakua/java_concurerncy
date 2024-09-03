@@ -9,16 +9,19 @@ import java.util.concurrent.TimeUnit;
 
 public class GenerateStatisticsAccountsTask implements Callable<Integer> {
 
+    public static final int ERROR_PROCESSING_FILE = 0;
+    public static final int SUCCESS = 1;
+
     @Override
     public Integer call() throws Exception {
         System.out.println("Generate statistics of accounts");
 
+        TimeUnit.SECONDS.sleep(6);
+
         String inputFilePath = "src/resources/bank_balances.csv";
         String outputFilePath = "src/resources/only_balances.csv";
-        cleanWrongData(inputFilePath, outputFilePath);
 
-        TimeUnit.SECONDS.sleep(6);
-        return 0;
+        return cleanWrongData(inputFilePath, outputFilePath);
     }
 
     private int cleanWrongData(String inputFilePath, String outputFilePath) {
@@ -53,10 +56,10 @@ public class GenerateStatisticsAccountsTask implements Callable<Integer> {
 
         } catch (IOException e) {
             System.out.println(e.toString());
-            return 0;
+            return ERROR_PROCESSING_FILE;
 
         }
-        return 1;
+        return SUCCESS;
     }
 }
 

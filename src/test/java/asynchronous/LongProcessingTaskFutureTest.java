@@ -1,5 +1,6 @@
 package asynchronous;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.*;
@@ -26,7 +27,11 @@ class LongProcessingTaskFutureTest {
         }
 
         System.out.println(future1.get());
+        Assertions.assertEquals(1, future1.get());
+
         System.out.println(future2.get());
+        Assertions.assertEquals(1, future2.get());
+
 
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println("Both tasks finished in " + (elapsedTime / 1000000) / 1000 + " seconds");
